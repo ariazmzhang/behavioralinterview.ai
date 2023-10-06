@@ -1,9 +1,12 @@
 "use client";
 import Banner from "@/components/Banner";
 import Card from "@/components/Card";
-import React from "react";
+import React, { useState } from 'react';
+import { Hero, Header, MobileMenu } from '../components';
 
-export default function Blog() {
+
+export default function Page() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <div className="relative py-8 px-8">
       <a
