@@ -2,15 +2,48 @@
 import CTA from "@/components/CTA";
 import Card from "@/components/Card";
 import Link from "@/components/Link";
+import { Hero, Header, RespondCard} from '../components';
 import {
   PresentationChartBarIcon,
   ChatBubbleBottomCenterTextIcon,
   BriefcaseIcon,
 } from "@heroicons/react/24/outline";
 
-import React from "react";
+import React, {useState} from "react";
 
-export default function App() {
+export default function Build() {
+  type ApiResponse = {
+    message: string;
+  };
+  
+  const [apiResponse, setApiResponse] = useState<null | ApiResponse>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+
+  const handleUploadedCV = async(file: File) => {
+    console.log(file);
+    setIsProcessing(true);  // Set processing to true at the start
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch("/api/processCV", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      // updateConsole(data);
+      console.log("this is the data from the api: ", data);
+
+      setApiResponse(data);  // Update the state with the API's response
+      
+    } catch (error) {
+      console.error("Error processing CV: ", error);
+    }finally {
+      setIsProcessing(false);  // Set processing back to false at the end
+    }
+  };
   return (
     <div className="flex flex-col lg:flex-row flex-grow bg-gray-100 p-10 mt-20">
 
@@ -30,9 +63,9 @@ export default function App() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </span>
@@ -49,9 +82,9 @@ export default function App() {
                 id="fileUpload" 
                 className="absolute opacity-0 w-full h-full cursor-pointer"
                 onChange={e => {
-                  const fileName = e.target.files[0]?.name;
+                  const fileName = e.target.files?.[0];
                   if (fileName) {
-                    document.getElementById('fileLabel').innerText = `Selected: ${fileName}`;
+                    handleUploadedCV(fileName);
                   }
                 }}
               />
@@ -69,7 +102,7 @@ export default function App() {
           </li>
 
 
-          {/* -----------------------------2. build your CV(let chatgpt ask questions about cv to know you better)------------------------------ */}
+          {/* -----------------------------2. generate the answers------------------------------ */}
           <li className="relative pb-10 pl-8 border-l border-gray-900/20 dark:border-gray-700 dark:text-gray-400">
             <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
               <svg
@@ -80,18 +113,18 @@ export default function App() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </span>
 
-            <h3 className="font-base leading-tight">Build your CV</h3>
+            <h3 className="font-base leading-tight">Nail the Behavioural Qs</h3>
             <p className="text-sm">
               The one place for all your professional experience
             </p>
-            <CTA className="mt-3 text-green-400 font-bold bg-green-200">Revise</CTA>
+            <CTA className="mt-3 text-green-400 font-bold bg-green-200">Generate</CTA>
           </li>
 
 
@@ -142,7 +175,7 @@ export default function App() {
       
     </Card>
 
-    <Card className="flex flex-grow flex-col lg:w-1/2 p-10 ml-10  z-50">
+    {/* <Card className="flex flex-grow flex-col lg:w-1/2 p-10 ml-10  z-50">
     <div className="text-start mb-2">
             <h1 className="text-xl font-bold tracking-tight text-black sm:text-xl">
               Beh
@@ -157,7 +190,10 @@ export default function App() {
             </h1>
           </div>
         <div className="text-slate-800 text-sm">Follow the instruction and talk to Copilot to assemble your story toolbox.</div>
-      </Card>
+    </Card> */}
+    <RespondCard openAIResponse={apiResponse} isProcessing={isProcessing}/>
+
+
     </div>
   );
 }

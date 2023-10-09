@@ -16,6 +16,7 @@ import ActionChip from './ActionChip';
 import { ChatContext } from './chat/ChatContext';
 import ChatMessageActionButton  from './chat/ChatMessageActionButton';
 import ChatSystemActionButton from './chat/ChatSystemActionButton';
+import RespondCard from './RespondCard';
 
 export {
     Hero,
@@ -36,5 +37,6 @@ export {
     ChatContext,
     ChatMessageActionButton,
     ChatSystemActionButton,
+    RespondCard
 
 }

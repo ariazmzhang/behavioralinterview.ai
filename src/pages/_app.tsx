@@ -8,7 +8,6 @@ import React, { useState } from 'react';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
     return (
         <>
             <Header setMobileMenuOpen={setMobileMenuOpen}/>
