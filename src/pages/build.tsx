@@ -2,7 +2,7 @@
 import CTA from "@/components/CTA";
 import Card from "@/components/Card";
 import Link from "@/components/Link";
-import { Hero, Header, RespondCard} from '../components';
+import { Hero, UploadCV, RespondCard} from '../components';
 import {
   PresentationChartBarIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -18,6 +18,7 @@ export default function Build() {
   
   const [apiResponse, setApiResponse] = useState<null | ApiResponse>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
 
   const handleUploadedCV = async(file: File) => {
@@ -29,21 +30,25 @@ export default function Build() {
 
       const response = await fetch("/api/processCV", {
         method: "POST",
-        body: formData,
+        body: "Hi there",
       });
 
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
       const data = await response.json();
-      // updateConsole(data);
-      console.log("this is the data from the api: ", data);
 
-      setApiResponse(data);  // Update the state with the API's response
-      
+      console.log("this is the data from the api: ", data.content);
+
+      setApiResponse(data.content);  // Update the state with the API's response
+      setIsCompleted(true);
     } catch (error) {
       console.error("Error processing CV: ", error);
     }finally {
       setIsProcessing(false);  // Set processing back to false at the end
     }
   };
+ 
   return (
     <div className="flex flex-col lg:flex-row flex-grow bg-gray-100 p-10 mt-20">
 
@@ -51,9 +56,23 @@ export default function Build() {
       <div className="flex flex-col space-y-8">
         <ol className="relative ml-4 text-gray-800 font-light">
 
-
           {/* -----------------------------1. upload your CV------------------------------ */}
-          <li className="relative pb-10 pl-8 border-l border-gray-900/20 dark:border-gray-700 dark:text-gray-400">
+          <UploadCV 
+            title='Upload your CV'
+            description="Please upload your cv so we can know you better"
+            iconPath='/checkmark.svg'
+            buttonText="Upload"
+            onButtonClick={(file) => {
+              if (file) {
+                handleUploadedCV(file);
+              }
+            }}
+            isProcessing={isProcessing}
+            isCompleted={isCompleted}
+          />
+
+
+          {/* <li className="relative pb-10 pl-8 border-l border-gray-900/20 dark:border-gray-700 dark:text-gray-400">
             <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
               <svg
                 aria-hidden="true"
@@ -99,7 +118,7 @@ export default function Build() {
             </div>
 
             
-          </li>
+          </li> */}
 
 
           {/* -----------------------------2. generate the answers------------------------------ */}
@@ -142,6 +161,8 @@ export default function Build() {
             <p className="text-sm">The ultimate interview prep</p>
             <CTA className="mt-3">Continue</CTA>
           </li>
+
+
           <li className="relative pb-10 pl-8 border-l border-gray-900/20 dark:border-gray-700 dark:text-gray-400">
             <span className="absolute top-0 flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full bottom-[0.2rem] -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700">
               <PresentationChartBarIcon
@@ -155,6 +176,8 @@ export default function Build() {
             </p>
             <CTA className="mt-3">Let&apos;s do it</CTA>
           </li>
+
+
           <li className="relative pl-8">
             <span className="absolute top-0 flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full bottom-[0.2rem] -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700">
               <ChatBubbleBottomCenterTextIcon
@@ -170,6 +193,7 @@ export default function Build() {
             </p>
             <CTA className="mt-4">Sure</CTA>
           </li>
+
         </ol>
       </div>
       
@@ -191,7 +215,7 @@ export default function Build() {
           </div>
         <div className="text-slate-800 text-sm">Follow the instruction and talk to Copilot to assemble your story toolbox.</div>
     </Card> */}
-    <RespondCard openAIResponse={apiResponse} isProcessing={isProcessing}/>
+    <RespondCard openAIResponse={apiResponse}/>
 
 
     </div>

@@ -6,8 +6,8 @@ const openai = new OpenAI({ key: process.env.OPENAI_API_KEY });
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      const file: File = req.body;
-    //   console.log(file);
+    //   const file: File = req.body;
+      console.log("request from the client: ", req.body);
     //   // TODO: Convert the file to text or use its content accordingly
     //   const fileContent = /* extract content from file */;
 
@@ -20,8 +20,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         temperature: 0.5,
         max_tokens: 1024,
       });
+      console.log("response from the openAI API: ", response.choices[0].message);
 
-      return res.status(200).json(response.data);
+      return res.status(200).json(response.choices[0].message);
 
     } catch (error) {
         console.error("Error in /api/processCV:", error); 

@@ -4,10 +4,6 @@ import MobileMenu from './MobileMenu';
 import Button from './Button';
 import GradientBackground from './GradientBackground';
 import ProjectCard from './ProjectCard';
-import Podcast from './Podcast';
-import Bookshelf from './Bookshelf';
-import Experience from './Experience';
-import Skills from './Skills';
 import Card from './Card';
 import CTA from './CTA';
 import Banner from './Banner';
@@ -17,7 +13,7 @@ import { ChatContext } from './chat/ChatContext';
 import ChatMessageActionButton  from './chat/ChatMessageActionButton';
 import ChatSystemActionButton from './chat/ChatSystemActionButton';
 import RespondCard from './RespondCard';
-
+import UploadCV from './UploadCV';
 export {
     Hero,
     Header,
@@ -25,10 +21,6 @@ export {
     Button,
     GradientBackground,
     ProjectCard,
-    Podcast,
-    Bookshelf,
-    Experience,
-    Skills,
     Card,
     CTA,
     Banner,
@@ -37,6 +29,7 @@ export {
     ChatContext,
     ChatMessageActionButton,
     ChatSystemActionButton,
-    RespondCard
+    RespondCard,
+    UploadCV,
 
 }

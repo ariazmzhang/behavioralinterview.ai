@@ -9,10 +9,9 @@ type ApiResponse = {
 
 type ResponseCardProps = {
   openAIResponse: ApiResponse | null;  // The API response can be either the ApiResponse type or null.
-  isProcessing: boolean;
 };
 
-const ResponseCard: React.FC<ResponseCardProps> = ({ openAIResponse, isProcessing }) => {
+const ResponseCard: React.FC<ResponseCardProps> = ({ openAIResponse }) => {
   return (
     <Card className="flex flex-grow flex-col lg:w-1/2 p-10 ml-10 z-50 ">
       {/* Header section of the card */}
@@ -34,7 +33,7 @@ const ResponseCard: React.FC<ResponseCardProps> = ({ openAIResponse, isProcessin
       <div className="text-slate-800 text-sm">
         Follow the instruction and talk to Copilot to assemble your story toolbox.
         {/* Display processing message if isProcessing is true */}
-        {isProcessing && <div>AI is processing your data...</div>}
+        {/* {isProcessing && <div>AI is processing your data...</div>} */}
 
         {/* API Response section - This will be displayed only if there's an API response */}
         {openAIResponse && (
