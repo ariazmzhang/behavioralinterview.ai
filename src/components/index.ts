@@ -7,7 +7,7 @@ import ProjectCard from './ProjectCard';
 import Card from './Card';
 import CTA from './CTA';
 import Banner from './Banner';
-import Document from 'next/document';
+import Document from './Document';
 import ActionChip from './ActionChip';
 import { ChatContext } from './chat/ChatContext';
 import ChatMessageActionButton  from './chat/ChatMessageActionButton';

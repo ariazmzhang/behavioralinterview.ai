@@ -1,8 +1,4 @@
-"use client";
-import CTA from "@/components/CTA";
-import Card from "@/components/Card";
-import Link from "@/components/Link";
-import { Hero, UploadCV, RespondCard} from '../components';
+import {CTA, Card, UploadCV, RespondCard} from '../components';
 import {
   PresentationChartBarIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -10,6 +6,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import React, {useState} from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Build() {
   type ApiResponse = {
@@ -35,13 +32,14 @@ export default function Build() {
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
-    }
+      }
       const data = await response.json();
 
       console.log("this is the data from the api: ", data.content);
 
       setApiResponse(data.content);  // Update the state with the API's response
       setIsCompleted(true);
+      
     } catch (error) {
       console.error("Error processing CV: ", error);
     }finally {

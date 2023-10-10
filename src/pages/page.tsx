@@ -3,7 +3,7 @@ import Banner from "@/components/Banner";
 import Card from "@/components/Card";
 import React, { useState } from 'react';
 import { Hero, Header, MobileMenu } from '../components';
-
+import Image from 'next/image';
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,7 +13,7 @@ export default function Page() {
         className="flex flex-row space-x-8 items-center justify-between"
         href="#"
       >
-        <img
+        <Image
           className="h-8 w-8"
           src="/logo.png"
           alt="behavioral-interview.ai logo"
@@ -54,21 +54,25 @@ export default function Page() {
             />
           </div> */}
           <div className="grow mb-4 -mx-8 md:mx-[unset] md:mb-0 md:px-8 w-screen overflow-x-auto space-x-4 flex flex-row md:flex-col md:space-x-[unset] md:space-y-8">
-            <img
+            <Image
               className="w-4/5 md:w-full h-auto rounded-lg"
               src="https://i0.wp.com/joinhandshake.com/wp-content/uploads/2021/09/behavioral-interview-tips.png"
+              alt="behavioral-interview.ai logo"
             />
-            <img
+            <Image
               className="w-4/5 md:w-full h-auto rounded-lg"
               src="https://i0.wp.com/joinhandshake.com/wp-content/uploads/2021/09/behavioral-interview-tips.png"
+              alt="behavioral-interview.ai logo"
             />
-            <img
+            <Image
               className="w-4/5 md:w-full h-auto rounded-lg"
               src="https://i0.wp.com/joinhandshake.com/wp-content/uploads/2021/09/behavioral-interview-tips.png"
+              alt="behavioral-interview.ai logo"
             />
-            <img
+            <Image
               className="w-4/5 md:w-full h-auto rounded-lg"
               src="https://i0.wp.com/joinhandshake.com/wp-content/uploads/2021/09/behavioral-interview-tips.png"
+              alt="behavioral-interview.ai logo"
             />
           </div>
           <Card className="h-fit bg-white/30 px-6 py-6 -mx-4 md-mx-[unset] md:max-w-[50%] shrink-0">

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dialog } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import Link from './Link';
+import Image from 'next/image';
 
 // Navigation items for the mobile menu
 const navigation = [
@@ -27,10 +29,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobileMenuOp
         {/* Header section of the mobile menu */}
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Aria's Space</span>
-            <img className="h-8 w-auto" src="/programmer.png" alt="" />
-          </a>
+          <Link href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">Aria&apos;s Space</span>
+            <Image className="h-8 w-auto" src="/programmer.png" alt="" />
+          </Link>
+
           {/* Close button */}
           <button
             type="button"
@@ -48,23 +51,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobileMenuOp
             {/* Navigation links */}
             <div className="space-y-2 py-6">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-purple-300"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
             {/* Login link */}
             <div className="py-6">
-              <a
+              <Link
                 href="mailto:zmzhangg@gmail.com"
                 className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-purple-400 hover:bg-purple-300"
               >
                 💭 Fancy a chat?
-              </a>
+              </Link>
             </div>
           </div>
         </div>

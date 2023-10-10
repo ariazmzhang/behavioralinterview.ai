@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "./Link";
 
 const navigation = [
   { name: "Features", href: "#" },
@@ -19,10 +20,10 @@ export default function Hero() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-white ring-1 ring-white/60 hover:ring-white">
               Check out our roadmap.{" "}
-              <a href="#" className="font-semibold text-indigo-500/50">
+              <Link href="#" className="font-semibold text-indigo-500/50">
                 <span className="absolute inset-0" aria-hidden="true" />
                 Read more <span aria-hidden="true">&rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="text-center">
@@ -41,12 +42,12 @@ export default function Hero() {
               Nail behavioral interviews with AI powered Story Toolbox.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
+              <Link
                 href="/build"
                 className="rounded-md animate-text  bg-gradient-to-r from-purple-400 to-blue-500 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Start Your Journey
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,10 @@
 import React from 'react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
+import Link from './Link';
+import Image from 'next/image';
+import { signIn, signOut, useSession } from "next-auth/react";
+import Button from './Button';
 
 const navigation = [
     { name: "Blog", href: "/blog" },
@@ -16,16 +20,17 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ setMobileMenuOpen }) => {
 	const router = useRouter();
+  const { data: session } = useSession();
   	return (
       <nav className="top-0 w-full flex items-center justify-between p-6 lg:px-8 m-1 fixed z-50 bg-opacity-90" aria-label="Global">
       {/* Logo */}
       <div className="flex lg:flex-1">
-        <a href="/" className="-m-1.5 p-1.5">
+        <Link href="/" className="-m-1.5 p-1.5">
           <span className="sr-only">My Fav Restaurants</span>
           {/* <img src="programmer.png" alt="" className='h-4'/>
           <h1 className='text-4xl'>👩🏻‍💻</h1>  */}
-          <img className="h-10 w-auto" src="/logo.png" alt="my logo" />
-        </a>
+          <Image className="h-10 w-10" src="/logo.png" alt="my logo" width={100} height={100}/>
+        </Link>
       </div>
 
       {/* Mobile Menu Button */}
@@ -41,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ setMobileMenuOpen }) => {
       </div>
 
       {/* Desktop Navigation */}
-      {/* <div className="hidden lg:flex lg:gap-x-12">
+      <div className="hidden lg:flex lg:gap-x-12">
         {navigation.map((item) => (
           	<a 
 				key={item.name} 
@@ -53,14 +58,28 @@ const Header: React.FC<HeaderProps> = ({ setMobileMenuOpen }) => {
             {item.name}
           </a>
         ))}
-      </div> */}
+      </div>
 
       {/* Login */}
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" className="text-sm font-semibold leading-6 text-white">
+        {/* <Link href="#" className="text-sm font-semibold leading-6 text-white">
           Log in <span aria-hidden="true">&rarr;</span>
-        </a>
+        </Link> */}
+          {(session && session.user) &&
+            <div>
+              <p className="text-sm font-semibold leading-6 text-white">{session?.user?.name}</p>
+              <button onClick={() => signOut()} className="text-sm font-semibold leading-6 text-white">Log out 
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          }   
+        {!(session && session.user) &&
+          <button onClick={() => signIn("google")} className="text-sm font-semibold leading-6 text-white"> 
+            Log in <span aria-hidden="true">&rarr;</span>
+          </button>
+        }
       </div>
+      
     </nav>
   );
 }

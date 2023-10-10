@@ -1,4 +1,3 @@
-import { AuthContext } from "@/common/auth";
 import React from "react";
 
 export interface MessageAction {

@@ -35,11 +35,14 @@ const ResponseCard: React.FC<ResponseCardProps> = ({ openAIResponse }) => {
         {/* Display processing message if isProcessing is true */}
         {/* {isProcessing && <div>AI is processing your data...</div>} */}
 
+        console.log(openAIResponse);
+        
         {/* API Response section - This will be displayed only if there's an API response */}
         {openAIResponse && (
             <div className="mt-4 text-slate-800 text-sm">
                 {/* Display the message from the API response */}
                 {openAIResponse.message}
+                
             </div>)
         }
       </div>

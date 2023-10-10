@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge"
+import Link from "./Link"
 
 const Banner: React.FC<{className?: string}> = ({className}) => {
   return (
@@ -35,12 +36,12 @@ const Banner: React.FC<{className?: string}> = ({className}) => {
           </svg>
           The AI powered story toolbox for behavioral interviews.
         </p>
-        <a
+        <Link
           href="/"
           className="self-end md:self-auto flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
           Try now <span aria-hidden="true">&rarr;</span>
-        </a>
+        </Link>
       </div>
     </div>
   )

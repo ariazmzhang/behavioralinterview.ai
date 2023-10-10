@@ -1,5 +1,7 @@
 import React from 'react';
 import CTA from './CTA';
+import Image from 'next/image';
+
 
 interface ListItemProps {
   title: string;
@@ -30,20 +32,18 @@ const UploadCV: React.FC<ListItemProps> = ({ title, description, iconPath, butto
   return (
     <li className="relative pb-10 pl-8 border-l border-gray-900/20 dark:border-gray-700 dark:text-gray-400">
         <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-            {iconPath ? <img src={iconPath} alt="icon" className="w-5 h-5" /> : null}
+            {iconPath ? <Image src={iconPath} alt="icon" className="w-5 h-5" width={80} height={80}/> : null}
         </span>
         <h3 className="font-base leading-tight">{title}</h3>
         <p className="text-sm">{description}</p>
-
-        {/* {customComponent} */}
         
-        {!isProcessing &&
+        {!isProcessing && !isCompleted &&
           <CTA className="text-green-400 font-bold bg-white mt-4" onClick={handleButtonClick}>
             Upload
           </CTA>}
 
         {isProcessing &&
-          <CTA className="text-green-400 font-bold bg-purple-200-200 mt-4" onClick={handleButtonClick}>
+          <CTA className="text-green-400 font-bold bg-purple-200 mt-4" onClick={handleButtonClick}>
             Processing
           </CTA>}
 
@@ -51,8 +51,6 @@ const UploadCV: React.FC<ListItemProps> = ({ title, description, iconPath, butto
           <CTA className="text-green-400 font-bold bg-green-200 mt-4" onClick={handleButtonClick}>
             Completed
           </CTA>}
-
-     
 
         <input 
             type="file" 
