@@ -1,4 +1,4 @@
-import {CTA, Card, UploadCV, RespondCard} from '../components';
+import {CTA, Card, UploadCVButton, RespondCard} from '../components';
 import {
   PresentationChartBarIcon,
   ChatBubbleBottomCenterTextIcon,
@@ -19,22 +19,23 @@ export default function Build() {
 
 
   const handleUploadedCV = async(file: File) => {
-    console.log(file);
     setIsProcessing(true);  // Set processing to true at the start
     try {
       const formData = new FormData();
       formData.append("file", file);
 
+      // ---------------------send the file to the chatGPT API to process the CV--------------------------------
       const response = await fetch("/api/processCV", {
         method: "POST",
-        body: "Hi there",
+        body: "Hi there",//this is the prompt
       });
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      const data = await response.json();
 
+      // ---------------------Received the response from the chatGPT API--------------------------------
+      const data = await response.json();
       console.log("this is the data from the api: ", data.content);
 
       setApiResponse(data.content);  // Update the state with the API's response
@@ -55,7 +56,7 @@ export default function Build() {
         <ol className="relative ml-4 text-gray-800 font-light">
 
           {/* -----------------------------1. upload your CV------------------------------ */}
-          <UploadCV 
+          <UploadCVButton 
             title='Upload your CV'
             description="Please upload your cv so we can know you better"
             iconPath='/checkmark.svg'
@@ -213,9 +214,9 @@ export default function Build() {
           </div>
         <div className="text-slate-800 text-sm">Follow the instruction and talk to Copilot to assemble your story toolbox.</div>
     </Card> */}
-    <RespondCard openAIResponse={apiResponse}/>
-
-
+      <div className="flex flex-col w-full">
+        <RespondCard openAIResponse={apiResponse}/>
+      </div>
     </div>
   );
 }

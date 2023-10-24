@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import TextLogo from './TextLogo';
 // Define the type for the API response prop.
 // For this example, I'm assuming the API response is an object with a "message" field.
 // Adjust this type according to the actual structure of your API response.
@@ -11,22 +12,12 @@ type ResponseCardProps = {
   openAIResponse: ApiResponse | null;  // The API response can be either the ApiResponse type or null.
 };
 
-const ResponseCard: React.FC<ResponseCardProps> = ({ openAIResponse }) => {
+const ResponseCard: React.FC<ResponseCardProps & React.ButtonHTMLAttributes<HTMLButtonElement> & React.PropsWithChildren > = ({ openAIResponse, children, className, ...props }) => {
   return (
-    <Card className="flex flex-grow flex-col lg:w-1/2 p-10 ml-10 z-50 ">
+    <Card className={`h-full p-10 ml-10 z-50 ${className || ""}`} >
       {/* Header section of the card */}
       <div className="text-start mb-2">
-        <h1 className="text-xl font-bold tracking-tight text-black sm:text-xl">
-          Beh
-          <span className="animate-text text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-            a
-          </span>
-          vioral Interv
-          <span className="animate-text text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-            i
-          </span>
-          ew
-        </h1>
+        <TextLogo className='text-xl text-black'/>
       </div>
 
       {/* Instruction text */}
@@ -35,7 +26,6 @@ const ResponseCard: React.FC<ResponseCardProps> = ({ openAIResponse }) => {
         {/* Display processing message if isProcessing is true */}
         {/* {isProcessing && <div>AI is processing your data...</div>} */}
 
-        console.log(openAIResponse);
         
         {/* API Response section - This will be displayed only if there's an API response */}
         {openAIResponse && (
@@ -46,8 +36,6 @@ const ResponseCard: React.FC<ResponseCardProps> = ({ openAIResponse }) => {
             </div>)
         }
       </div>
-      
-      
     </Card>
   );
 };

@@ -7,13 +7,11 @@ import ProjectCard from './ProjectCard';
 import Card from './Card';
 import CTA from './CTA';
 import Banner from './Banner';
-import Document from './Document';
-import ActionChip from './ActionChip';
-import { ChatContext } from './chat/ChatContext';
-import ChatMessageActionButton  from './chat/ChatMessageActionButton';
-import ChatSystemActionButton from './chat/ChatSystemActionButton';
 import RespondCard from './RespondCard';
-import UploadCV from './UploadCV';
+import UploadCVButton from './UploadCV';
+import TextLogo from './TextLogo';
+import Footer from './Footer';
+
 export {
     Hero,
     Header,
@@ -24,12 +22,8 @@ export {
     Card,
     CTA,
     Banner,
-    Document,
-    ActionChip,
-    ChatContext,
-    ChatMessageActionButton,
-    ChatSystemActionButton,
     RespondCard,
-    UploadCV,
-
+    UploadCVButton,
+    TextLogo,
+    Footer
 }

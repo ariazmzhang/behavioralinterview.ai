@@ -1,5 +1,3 @@
-import React from "react";
-
 const Link: React.FC<
   React.AnchorHTMLAttributes<HTMLAnchorElement> & React.PropsWithChildren & {gradient?: boolean; underline?: boolean}
 > = ({ children, className, gradient, underline = true, ...props }) => {

@@ -1,3 +1,8 @@
+// I want this to be 
+// 1. upload the cv, 
+// 2. using pdfjs-dist library to extract resume content 
+// 3. generate a chatgpt prompt then I can pass to the chatgpt api
+
 import React from 'react';
 import CTA from './CTA';
 import Image from 'next/image';

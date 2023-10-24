@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "./Link";
-
+import TextLogo from "./TextLogo";
 const navigation = [
   { name: "Features", href: "#" },
   { name: "Community", href: "#" },
@@ -27,23 +27,14 @@ export default function Hero() {
             </div>
           </div>
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Beh
-              <span className="animate-text text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-                a
-              </span>
-              vioral Interv
-              <span className="animate-text text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-                i
-              </span>
-              ew
-            </h1>
+            <TextLogo className="text-4xl text-white tracking-tight sm:text-6xl" />
             <p className="mt-6 text-lg leading-8 text-neutral-50">
               Nail behavioral interviews with AI powered Story Toolbox.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/build"
+                underline={false}
                 className="rounded-md animate-text  bg-gradient-to-r from-purple-400 to-blue-500 px-8 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Start Your Journey

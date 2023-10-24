@@ -3,6 +3,14 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+// 1. process the CV and extract the key words like education and work experience
+// 2. ask the user for more information to form the story box (need a chatbox below the respond box)
+// 3. get the job description and the company they're interviewing with
+// 4. generate the answer for the most common behavioural questions (maybe for this specific company and also based on the JD)
+// 5. generate more based on the user's information(?) or the user can ask a question occurs to them and get the answer
+// 6. async the answer to Notion or Google Doc
+// 7. ask for feedback from the user about the interview
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {

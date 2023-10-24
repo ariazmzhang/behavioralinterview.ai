@@ -6,12 +6,12 @@ import Image from 'next/image';
 import { signIn, signOut, useSession } from "next-auth/react";
 import Button from './Button';
 
-const navigation = [
-    { name: "Blog", href: "/blog" },
-    { name: "Page", href: "/page" },
-    { name: "root", href: "/root" },
-    { name: "Build", href: "/build" },
-  ];
+// const navigation = [
+//     { name: "Blog", href: "/blog" },
+//     { name: "Page", href: "/page" },
+//     { name: "root", href: "/root" },
+//     { name: "Build", href: "/build" },
+//   ];
 
 type HeaderProps = {
 	setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ setMobileMenuOpen }) => {
       <nav className="top-0 w-full flex items-center justify-between p-6 lg:px-8 m-1 fixed z-50 bg-opacity-90" aria-label="Global">
       {/* Logo */}
       <div className="flex lg:flex-1">
-        <Link href="/" className="-m-1.5 p-1.5">
+        <Link href="/" underline={false} className="-m-1.5 p-1.5">
           <span className="sr-only">My Fav Restaurants</span>
           {/* <img src="programmer.png" alt="" className='h-4'/>
           <h1 className='text-4xl'>👩🏻‍💻</h1>  */}
@@ -46,19 +46,17 @@ const Header: React.FC<HeaderProps> = ({ setMobileMenuOpen }) => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden lg:flex lg:gap-x-12">
+      {/* <div className="hidden lg:flex lg:gap-x-12">
         {navigation.map((item) => (
-          	<a 
-				key={item.name} 
-				href={item.href} 
-				className={`"text-sm font-semibold leading-6 ${
-					router.pathname === item.href ? "text-purple-400" : "text-white"
-				  }`}
-			>
+          <a 
+            key={item.name} 
+            href={item.href} 
+            className={`"text-sm font-semibold leading-6 ${router.pathname === item.href ? "text-purple-400" : "text-white"}`}
+          >
             {item.name}
           </a>
         ))}
-      </div>
+      </div> */}
 
       {/* Login */}
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
