@@ -8,10 +8,10 @@ import Card from './Card';
 import CTA from './CTA';
 import Banner from './Banner';
 import RespondCard from './RespondCard';
-import UploadCVButton from './UploadCV';
+import UploadCVButton from './CVUploader';
 import TextLogo from './TextLogo';
 import Footer from './Footer';
-
+import CVHandleParent from './CVHandleParent';
 export {
     Hero,
     Header,
@@ -25,5 +25,6 @@ export {
     RespondCard,
     UploadCVButton,
     TextLogo,
-    Footer
+    Footer,
+    CVHandleParent
 }

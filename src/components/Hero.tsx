@@ -1,18 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "./Link";
 import TextLogo from "./TextLogo";
-const navigation = [
-  { name: "Features", href: "#" },
-  { name: "Community", href: "#" },
-  { name: "Pricing", href: "#" },
-];
 
 export default function Hero() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <div className="bg-white w-screen h-screen flex flex-row justify-center items-center">
       <div className="relative isolate px-6 lg:px-8">

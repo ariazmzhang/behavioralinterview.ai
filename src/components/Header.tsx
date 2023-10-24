@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Link from './Link';
 import Image from 'next/image';
 import { signIn, signOut, useSession } from "next-auth/react";
-import Button from './Button';
 
 // const navigation = [
 //     { name: "Blog", href: "/blog" },

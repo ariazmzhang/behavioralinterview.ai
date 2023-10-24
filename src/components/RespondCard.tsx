@@ -1,12 +1,9 @@
 import React from 'react';
 import Card from './Card';
 import TextLogo from './TextLogo';
-// Define the type for the API response prop.
-// For this example, I'm assuming the API response is an object with a "message" field.
-// Adjust this type according to the actual structure of your API response.
-type ApiResponse = {
-  message: string;
-};
+
+
+type ApiResponse = string
 
 type ResponseCardProps = {
   openAIResponse: ApiResponse | null;  // The API response can be either the ApiResponse type or null.
@@ -29,9 +26,9 @@ const ResponseCard: React.FC<ResponseCardProps & React.ButtonHTMLAttributes<HTML
         
         {/* API Response section - This will be displayed only if there's an API response */}
         {openAIResponse && (
-            <div className="mt-4 text-slate-800 text-sm">
+            <div className="mt-4 text-slate-800 text-sm z-50">
                 {/* Display the message from the API response */}
-                {openAIResponse.message}
+                {openAIResponse}
                 
             </div>)
         }

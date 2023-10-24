@@ -3,21 +3,11 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// 1. process the CV and extract the key words like education and work experience
-// 2. ask the user for more information to form the story box (need a chatbox below the respond box)
-// 3. get the job description and the company they're interviewing with
-// 4. generate the answer for the most common behavioural questions (maybe for this specific company and also based on the JD)
-// 5. generate more based on the user's information(?) or the user can ask a question occurs to them and get the answer
-// 6. async the answer to Notion or Google Doc
-// 7. ask for feedback from the user about the interview
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const processCV = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-    //   const file: File = req.body;
       console.log("request from the client: ", req.body);
-    //   // TODO: Convert the file to text or use its content accordingly
-    //   const fileContent = /* extract content from file */;
 
 
     //Here to set all the ChatGPT prompts to let the results more accurate-------------------
@@ -25,16 +15,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         model: "gpt-3.5-turbo",
         messages: [{
             "role": "user",
-            "content": "I am a software engineer with 5 years of experience in the field. GCreate a list of 8 questions for an interview with me"
+            "content": req.body.prompt
         }],
         temperature: 0.5,
         max_tokens: 1024,
       });
 
 
-
-
-      //--------------------------------------------------------------------------------
       console.log("response from the openAI API: ", response.choices[0].message);
 
       return res.status(200).json(response.choices[0].message);
@@ -53,3 +40,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).end(); // Method Not Allowed
   }
 };
+export default processCV;
