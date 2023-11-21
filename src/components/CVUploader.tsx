@@ -12,22 +12,11 @@ interface ListItemProps {
   customComponent?: React.ReactNode;
 }
 
-const CVUploader: React.FC<ListItemProps> = ({
-  onButtonClick,
-}) => {
-  // State to store the selected file
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
+const CVUploader: React.FC<ListItemProps> = ({ onButtonClick }) => {
   // Ref for the file input element
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const [isCompleted, setIsCompleted] = useState(false);
-
-  // State to store the extracted PDF text content
-  const [pdfContent, setPdfContent] = useState('');
-  const [numPages, setNumPages] = useState(null);
-  const [pdfText, setPdfText] = useState('');
-
   
   // Function to handle the main button click
   const handleButtonClick = () => {
@@ -62,8 +51,6 @@ const CVUploader: React.FC<ListItemProps> = ({
         pdfText += pageText;
       }
   
-      // Update the state with the extracted text content
-      setPdfText(pdfText);
       // console.log("this is the pdf text: ", pdfText);
 
       // Call the callback function with the extracted text and the selected file
@@ -92,7 +79,7 @@ const CVUploader: React.FC<ListItemProps> = ({
         } mt-4`}
         onClick={handleButtonClick}
       >
-        {isCompleted ? 'Completed' : 'Upload'}
+        Upload
       </CTA>
 
       <input

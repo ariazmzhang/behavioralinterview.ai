@@ -2,15 +2,15 @@ import React from 'react';
 
 type ProjectCardProps = {
     title: string;
-    techStack: string;
+    keyword: string;
     descriptions: string[];
   };
   
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, techStack, descriptions }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, keyword, descriptions }) => {
     return (
         <div className="p-5 mb-6 bg-white text-black shadow-lg rounded-md bg-opacity-50">
             <h2 className="text-xl font-bold mb-2">{title}</h2>
-            <p className="text-sm text-gray-500 mb-3">{techStack}</p>
+            <p className="text-sm text-gray-500 mb-3">{keyword}</p>
             <ul className="list-disc pl-5">
                 {descriptions.map((desc, index) => (
                     <li key={index}>{desc}</li>

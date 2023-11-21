@@ -3,15 +3,13 @@ import React, { useState }from 'react';
 import {CTA} from '../components';
 
 function ChatGPTPrompt({ textContent, onGeneratedPrompt }: { textContent: string; onGeneratedPrompt: (prompt: string) => void; }) {
-    const [chatGPTPrompt, setChatGPTPrompt] = useState("");
     const [isCompleted, setIsCompleted] = useState(false);
 
     const generatePrompt = (textContent:string) => {
         const prompt = `Here is the resume of a candidates who is looking for a job in amazon, 
-        please generate 10 behavioral questions along with the answers based on the resume: ${textContent}`;
+        please generate one behavioral question along with the answers based on the resume: ${textContent}`;
         setIsCompleted(true);
 
-        // setChatGPTPrompt(prompt);
         // Call the callback to send the generated prompt to the parent component
         onGeneratedPrompt(prompt);
         
