@@ -31,7 +31,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mobileMenuOpen, setMobileMenuOp
           {/* Logo */}
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Aria&apos;s Space</span>
-            <Image className="h-8 w-auto" src="/programmer.png" alt="" />
+            <Image className="h-8 w-auto"
+            src="/programmer.png"
+            width={100}
+            height={100}
+            alt="" />
           </Link>
 
           {/* Close button */}
