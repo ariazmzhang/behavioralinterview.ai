@@ -7,8 +7,8 @@ import { getAnalytics, isSupported } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  apiKey: "AIzaSyCpj2Xu0l5kfztY81SZp5d7oUbqJpEVyso",
+  authDomain: "nextjs-firebase-auth-1b3e7.firebaseapp.com",
   projectId: "behavioral-interview-ai",
   storageBucket: "behavioral-interview-ai.appspot.com",
   messagingSenderId: "24462626494",
