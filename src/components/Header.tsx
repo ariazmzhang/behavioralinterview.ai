@@ -3,8 +3,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import Link from './Link';
 import Image from 'next/image';
-import { signIn, signOut, useSession } from "next-auth/react";
-
+import { useFirebaseAuth } from '../firebase/signin'; 
 // const navigation = [
 //     { name: "Blog", href: "/blog" },
 //     { name: "Page", href: "/page" },
@@ -19,7 +18,8 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ setMobileMenuOpen }) => {
 	const router = useRouter();
-  const { data: session } = useSession();
+  const { user, signIn, signOutUser } = useFirebaseAuth();
+
   	return (
       <nav className="top-0 w-full flex items-center justify-between p-6 lg:px-8 m-1 fixed z-50 bg-opacity-90" aria-label="Global">
       {/* Logo */}
@@ -62,18 +62,17 @@ const Header: React.FC<HeaderProps> = ({ setMobileMenuOpen }) => {
         {/* <Link href="#" className="text-sm font-semibold leading-6 text-white">
           Log in <span aria-hidden="true">&rarr;</span>
         </Link> */}
-          {(session && session.user) &&
+          {user? (
             <div>
-              <p className="text-sm font-semibold leading-6 text-white">{session?.user?.name}</p>
-              <button onClick={() => signOut()} className="text-sm font-semibold leading-6 text-white">Log out 
+              <p className="text-sm font-semibold leading-6 text-white">{user.displayName || 'User'}</p>
+              <button onClick={signOutUser} className="text-sm font-semibold leading-6 text-white">Log out 
                 <span aria-hidden="true">&rarr;</span>
               </button>
             </div>
-          }   
-        {!(session && session.user) &&
-          <button onClick={() => signIn("google")} className="text-sm font-semibold leading-6 text-white"> 
+          ):
+          (<button onClick={signIn} className="text-sm font-semibold leading-6 text-white"> 
             Log in <span aria-hidden="true">&rarr;</span>
-          </button>
+          </button>)
         }
       </div>
       
